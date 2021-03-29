@@ -21,7 +21,7 @@ function getWeekNumber(d) {
 }
 
 function routes(){
-  router.post("/check_next", async (req, res) => {
+  router.post("/check_next/:id", async (req, res) => {
     let body = req.body;
     let scrapedWeek = 0;
     let currentWeek = 1;
@@ -52,7 +52,7 @@ function routes(){
 
     if(scrapedNews.length > 0){
       let sendNews = JSON.parse(JSON.stringify(scrapedNews[0].all_news))
-        let newsResults = await findNews(sendNews,body.curr)
+        let newsResults = await findNews(sendNews,req.params.id)
         console.log(newsResults);
         res.status(200).json({
           success: true,
@@ -74,7 +74,7 @@ function routes(){
         })
 
         await news.save()
-        let newsResults = await findNews(newsList,body.curr)
+        let newsResults = await findNews(newsList,req.params.id)
 
         res.status(201).json({
           success: true,
