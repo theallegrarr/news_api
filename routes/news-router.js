@@ -55,7 +55,6 @@ function routes(){
         let newsResults = await findNews(sendNews,req.params.id)
         console.log(newsResults);
         res.status(200).json({
-          success: true,
           time: newsResults[0],
           name: newsResults[1]
         })
@@ -77,7 +76,6 @@ function routes(){
         let newsResults = await findNews(newsList,req.params.id)
 
         res.status(201).json({
-          success: true,
           time: newsResults[0],
           name: newsResults[1]
         })
