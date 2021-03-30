@@ -54,10 +54,7 @@ function routes(){
       let sendNews = JSON.parse(JSON.stringify(scrapedNews[0].all_news))
         let newsResults = await findNews(sendNews,req.params.id)
         console.log(newsResults);
-        res.status(200).json({
-          time: newsResults[0],
-          name: newsResults[1]
-        })
+        res.status(200).json(`,${newsResults[0]},${newsResults[1]},`)
 
     } else if (scrapedNews.length === 0) {
       request(options, async (error, response) => {
@@ -75,10 +72,7 @@ function routes(){
         await news.save()
         let newsResults = await findNews(newsList,req.params.id)
 
-        res.status(201).json({
-          time: newsResults[0],
-          name: newsResults[1]
-        })
+        res.status(201).json(`,${newsResults[0]},${newsResults[1]},`)
       });
     }
   
