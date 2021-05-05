@@ -62,47 +62,47 @@ function newsFinder(newsSet, symbol){
   let matches = []
   if(symbol === 'crude'){
     for(let i=0; i<crudeMatches.length; i++){
-      matches.push(findMatches(crudeMatches[i], newsSet))
+      matches.push(findMatches(crudeMatches[i], newsSet, symbol))
     }
   }
   if(symbol === 'dax'){
     for(let i=0; i<daxMatches.length; i++){
-      matches.push(findMatches(daxMatches[i], newsSet))
+      matches.push(findMatches(daxMatches[i], newsSet, symbol))
     }
   }
   if(symbol === 'chf'){
     for(let i=0; i<chfMatches.length; i++){
-      matches.push(findMatches(chfMatches[i], newsSet))
+      matches.push(findMatches(chfMatches[i], newsSet, symbol))
     }
   }
   if(symbol === 'nzd'){
     for(let i=0; i<nzdMatches.length; i++){
-      matches.push(findMatches(nzdMatches[i], newsSet))
+      matches.push(findMatches(nzdMatches[i], newsSet, symbol))
     }
   }
   if(symbol === 'aud'){
     for(let i=0; i<audMatches.length; i++){
-      matches.push(findMatches(audMatches[i], newsSet))
+      matches.push(findMatches(audMatches[i], newsSet, symbol))
     }
   }
   if(symbol === 'cad'){
     for(let i=0; i<cadNatches.length; i++){
-      matches.push(findMatches(cadNatches[i], newsSet))
+      matches.push(findMatches(cadNatches[i], newsSet, symbol))
     }
   }
   if(symbol === 'gbp'){
     for(let i=0; i<gbpMatches.length; i++){
-      matches.push(findMatches(gbpMatches[i], newsSet))
+      matches.push(findMatches(gbpMatches[i], newsSet, symbol))
     }
   }
   if(symbol === 'eur'){
     for(let i=0; i<eurMatches.length; i++){
-      matches.push(findMatches(eurMatches[i], newsSet))
+      matches.push(findMatches(eurMatches[i], newsSet, symbol))
     }
   }
   if(symbol === 'usd'){
     for(let i=0; i<usdMatches.length; i++){
-      matches.push(findMatches(usdMatches[i], newsSet))
+      matches.push(findMatches(usdMatches[i], newsSet, symbol))
     }
   }
   let newsName = "";
@@ -126,7 +126,7 @@ function newsFinder(newsSet, symbol){
   return [newsTimeTo, newsName]
 }
 
-function findMatches(posMatches, allNews){
+function findMatches(posMatches, allNews, sym){
   let finds = []
   //console.log(allNews, typeof allNews)
   
@@ -148,7 +148,10 @@ function findMatches(posMatches, allNews){
 
     //console.log(newsTags.diff(checkArray))
 
-    if(news.impact === "High" && newsTags.diff(checkArray).length>=1){
+    if(news.impact === "High" && 
+       newsTags.diff(checkArray).length>=1 && 
+       new Date(news.date) > new Date() &&
+       news.country.toLowerCase() === sym){
       finds.push({
         title: news.title,
         date: news.date

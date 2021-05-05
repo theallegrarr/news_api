@@ -27,8 +27,8 @@ function routes(){
     let currentWeek = 1;
     let allLinks = await LinkSchema.find()
     let link = allLinks[0].news_link;
-    console.log(body)
-
+    //console.log(link)
+    //NewsSchema.deleteMany()
     var j = request.jar();
     var options = {
       'method': 'GET',
@@ -38,17 +38,17 @@ function routes(){
       // }
     };
     
-    let scrapedNews = await NewsSchema.find()
-    //console.log(scrapedNews)
-    if(scrapedNews.length>0){
-      //scrapedWeek = await getWeekNumber(new Date(scrapedNews[0].last_check))
-      //currentWeek = await getWeekNumber(new Date())
-      //let time_diff = Math.abs(new Date() - new Date(scrapedNews[0].last_check)) / 36e5;
-      //console.log(time_diff)
-      //if(time_diff>48){
-        scrapedNews = []
-      //}
-    }
+    let scrapedNews = []
+    // //console.log(scrapedNews)
+    // if(scrapedNews.length>0){
+    //   //scrapedWeek = await getWeekNumber(new Date(scrapedNews[0].last_check))
+    //   //currentWeek = await getWeekNumber(new Date())
+    //   //let time_diff = Math.abs(new Date() - new Date(scrapedNews[0].last_check)) / 36e5;
+    //   //console.log(time_diff)
+    //   //if(time_diff>48){
+    //     scrapedNews = []
+    //   //}
+    // }
 
     if(scrapedNews.length > 0){
       let sendNews = JSON.parse(JSON.stringify(scrapedNews[0].all_news))
@@ -88,7 +88,7 @@ function routes(){
     let allLinks = await LinkSchema.find()
     let link = allLinks[0].news_link;
     let jsonData = []
-
+    console.log.apply(link)
     var j = request.jar();
     var options = {
       'method': 'GET',
