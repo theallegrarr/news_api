@@ -43,17 +43,17 @@ function routes(){
     if(scrapedNews.length>0){
       //scrapedWeek = await getWeekNumber(new Date(scrapedNews[0].last_check))
       //currentWeek = await getWeekNumber(new Date())
-      let time_diff = Math.abs(new Date() - new Date(scrapedNews[0].last_check)) / 36e5;
+      //let time_diff = Math.abs(new Date() - new Date(scrapedNews[0].last_check)) / 36e5;
       //console.log(time_diff)
-      if(time_diff>48){
+      //if(time_diff>48){
         scrapedNews = []
-      }
+      //}
     }
 
     if(scrapedNews.length > 0){
       let sendNews = JSON.parse(JSON.stringify(scrapedNews[0].all_news))
         let newsResults = await findNews(sendNews,req.params.id)
-        console.log(newsResults);
+        //console.log(newsResults);
         res.status(200).json(`,${newsResults[0]},${newsResults[1]},`)
 
     } else if (scrapedNews.length === 0) {
