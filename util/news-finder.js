@@ -148,7 +148,8 @@ function findMatches(posMatches, allNews, sym){
 
     //console.log(newsTags.diff(checkArray))
 
-    if(news.impact === "High" && 
+    if(
+       //news.impact === "High" && 
        newsTags.diff(checkArray).length>=1 && 
        new Date(news.date) > new Date() &&
        news.country.toLowerCase() === sym){
